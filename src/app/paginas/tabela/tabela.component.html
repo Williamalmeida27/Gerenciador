@@ -1,0 +1,77 @@
+<h1 style="text-align: center;"> FORMULÁRIO E TABELA</h1>
+<hr>
+<br>
+<section class="formulario">
+    <form>
+        <div class="row">
+            <div class="col">
+                <label>Nome</label>
+                <input type="text" class="form-control" [(ngModel)]="clientes.nome" id="nome" name="nome">
+            </div>
+            <div class="col">
+                <label>Descrição</label>
+                <input type="text" class="form-control" [(ngModel)]="clientes.descricao" id="descricao" name="descricao">
+            </div>
+            <div class="col">
+                <label>Valor</label>
+                <input type="text" class="form-control" [(ngModel)]="clientes.valor" id="valor" name="valor">
+            </div>
+            <div class="col">
+                <label>CPF</label>
+                <input type="text" class="form-control" [(ngModel)]="clientes.cpf" id="cpf" name="cpf">
+            </div>
+            <div class="col">
+                <label>Telefone</label>
+                <input type="text" class="form-control" [(ngModel)]="clientes.telefone" id="telefone" name="telefone">
+            </div>
+            <button class="btn btn-primary btn-sm" type="button" (click)="enviar()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+              </svg>
+            </button>
+           
+            <button class="btn btn-secondary btn-sm" type="button" (click)="(0)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                  </svg>
+            </button>
+            
+        </div>
+        
+    </form>
+</section>
+<br>
+<section class="tabela">
+    <div *ngIf="lista.length == 0">
+        Não existem dados na tabela
+    </div>
+    <table *ngIf="lista.length > 0 " class="table table-striped">
+        <!--Na tag acima o ngif está conferindo se a quantidade
+é igual ou maior que zero, se igual a zero ele mostra a msg, contrario ele mostra a tabela abaixo-->
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">nome</th>
+                <th scope="col">descrição</th>
+                <th scope="col">valor</th>
+                <th scope="col">cpf</th>
+                <th scope="col">telefone</th>
+                <th scope="col">Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--Já abaixo ele está usando o ngFor que busca os dados da lista e 
+            passa para o contato-->
+            <tr *ngFor="let contato of lista">
+                <td>{{contato.id}}</td>
+                <td>{{contato.nome}}</td>
+                <td>{{contato.descricao}}</td>
+                <td>{{contato.valor.toString()| currency}}</td>
+                <td>{{contato.cpf | cpf}}</td>
+                <td>{{contato.telefone | telefone}}</td>
+                <td>{{contato.data| date: 'dd/MM/yyyy'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
